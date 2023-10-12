@@ -22,6 +22,14 @@ jobs:
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
 
+      - name: Install Stress-ng
+        run: |
+          sudo apt install stress-ng
+
+      - name: Stress cpu 2 
+        run: |
+          stress-ng --cpu 2 -t 60s 
+
       - name: ECO CI Test - Get Measurements
         uses: green-coding-berlin/eco-ci-energy-estimation@v2
         with:
